@@ -6,16 +6,60 @@ package vista;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import javax.swing.table.DefaultTableModel;
+import modelo.DAOTipoMadera;
+import modelo.DTOTipoMadera;
 
 /**
  *
  * @author Carlos
  */
 public class frmTpMadera extends javax.swing.JFrame {
-    
+
     int xMouse, yMouse;
+
     public frmTpMadera() {
         initComponents();
+        verProducto();
+        habilitarBotones(false, false, false, false, true, false, false, false, true);
+    }
+
+    void limpiar() {
+        codTxt.setText("");
+        largoTxt.setText("");
+        anchoTxt.setText("");
+        espesorTxt.setText("");
+        codTxt.requestFocus();
+    }
+
+    void verProducto() {
+        DefaultTableModel modeloproducto;
+        DAOTipoMadera oDProd = new DAOTipoMadera();
+        modeloproducto = oDProd.verProducto();
+        tblTipoMadera.setModel(modeloproducto);
+
+    }
+
+    void habilitarBotones(boolean c, boolean l, boolean an, boolean es, boolean n, boolean g, boolean e, boolean b, boolean s) {
+        codTxt.setEnabled(c);
+        largoTxt.setEnabled(l);
+        anchoTxt.setEnabled(an);
+        espesorTxt.setEnabled(es);
+        nuevoTxt.setEnabled(n);
+        grabarTxt.setEnabled(g);
+        editarTxt.setEnabled(e);
+        borrarTxt.setEnabled(b);
+        salirTxt.setEnabled(s);
+
+        // Define color para los botones habilitados y deshabilitados
+        Color enabledColor = (new Color(0, 96, 170));
+        Color disabledColor = Color.DARK_GRAY;
+
+        nuevoBtn.setBackground(n ? enabledColor : disabledColor);
+        grabarBtn.setBackground(g ? enabledColor : disabledColor);
+        editarBtn.setBackground(e ? enabledColor : disabledColor);
+        borrarBtn.setBackground(b ? enabledColor : disabledColor);
+        salirBtn.setBackground(s ? enabledColor : disabledColor);
     }
 
     /**
@@ -36,15 +80,15 @@ public class frmTpMadera extends javax.swing.JFrame {
         codLbl = new javax.swing.JLabel();
         codTxt = new javax.swing.JTextField();
         codSeparator = new javax.swing.JSeparator();
-        espesorLbl = new javax.swing.JLabel();
-        espesorTxt = new javax.swing.JTextField();
-        espesorSeparator = new javax.swing.JSeparator();
-        anchoLbl = new javax.swing.JLabel();
-        anchoTxt = new javax.swing.JTextField();
-        anchoSeparator = new javax.swing.JSeparator();
         largoLbl = new javax.swing.JLabel();
         largoTxt = new javax.swing.JTextField();
         largoSeparator = new javax.swing.JSeparator();
+        anchoLbl = new javax.swing.JLabel();
+        anchoTxt = new javax.swing.JTextField();
+        anchoSeparator = new javax.swing.JSeparator();
+        espesorLbl = new javax.swing.JLabel();
+        espesorTxt = new javax.swing.JTextField();
+        espesorSeparator = new javax.swing.JSeparator();
         nuevoBtn = new javax.swing.JPanel();
         nuevoTxt = new javax.swing.JLabel();
         grabarBtn = new javax.swing.JPanel();
@@ -56,8 +100,9 @@ public class frmTpMadera extends javax.swing.JFrame {
         salirBtn = new javax.swing.JPanel();
         salirTxt = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblTipoMadera = new javax.swing.JTable();
         bg_img = new javax.swing.JLabel();
+        idTxt = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -145,7 +190,7 @@ public class frmTpMadera extends javax.swing.JFrame {
 
         codTxt.setBackground(new java.awt.Color(242, 242, 242));
         codTxt.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        codTxt.setForeground(new java.awt.Color(204, 204, 204));
+        codTxt.setForeground(new java.awt.Color(0, 0, 0));
         codTxt.setBorder(null);
         codTxt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -165,32 +210,32 @@ public class frmTpMadera extends javax.swing.JFrame {
         bg.add(codTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 80, 30));
         bg.add(codSeparator, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 190, 80, 10));
 
-        espesorLbl.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        espesorLbl.setForeground(new java.awt.Color(0, 0, 0));
-        espesorLbl.setText("ESPESOR");
-        bg.add(espesorLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 160, 60, 30));
+        largoLbl.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        largoLbl.setForeground(new java.awt.Color(0, 0, 0));
+        largoLbl.setText("LARGO");
+        bg.add(largoLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 160, 60, 30));
 
-        espesorTxt.setBackground(new java.awt.Color(242, 242, 242));
-        espesorTxt.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        espesorTxt.setForeground(new java.awt.Color(204, 204, 204));
-        espesorTxt.setBorder(null);
-        espesorTxt.addMouseListener(new java.awt.event.MouseAdapter() {
+        largoTxt.setBackground(new java.awt.Color(242, 242, 242));
+        largoTxt.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        largoTxt.setForeground(new java.awt.Color(0, 0, 0));
+        largoTxt.setBorder(null);
+        largoTxt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                espesorTxtMousePressed(evt);
+                largoTxtMousePressed(evt);
             }
         });
-        espesorTxt.addActionListener(new java.awt.event.ActionListener() {
+        largoTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                espesorTxtActionPerformed(evt);
+                largoTxtActionPerformed(evt);
             }
         });
-        espesorTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+        largoTxt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                espesorTxtKeyPressed(evt);
+                largoTxtKeyPressed(evt);
             }
         });
-        bg.add(espesorTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 160, 80, 30));
-        bg.add(espesorSeparator, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 190, 80, 10));
+        bg.add(largoTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 160, 80, 30));
+        bg.add(largoSeparator, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 190, 80, 10));
 
         anchoLbl.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         anchoLbl.setForeground(new java.awt.Color(0, 0, 0));
@@ -199,7 +244,7 @@ public class frmTpMadera extends javax.swing.JFrame {
 
         anchoTxt.setBackground(new java.awt.Color(242, 242, 242));
         anchoTxt.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        anchoTxt.setForeground(new java.awt.Color(204, 204, 204));
+        anchoTxt.setForeground(new java.awt.Color(0, 0, 0));
         anchoTxt.setBorder(null);
         anchoTxt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -219,32 +264,32 @@ public class frmTpMadera extends javax.swing.JFrame {
         bg.add(anchoTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, 80, 30));
         bg.add(anchoSeparator, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, 80, 10));
 
-        largoLbl.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
-        largoLbl.setForeground(new java.awt.Color(0, 0, 0));
-        largoLbl.setText("LARGO");
-        bg.add(largoLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, 60, 30));
+        espesorLbl.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        espesorLbl.setForeground(new java.awt.Color(0, 0, 0));
+        espesorLbl.setText("ESPESOR");
+        bg.add(espesorLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, 60, 30));
 
-        largoTxt.setBackground(new java.awt.Color(242, 242, 242));
-        largoTxt.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
-        largoTxt.setForeground(new java.awt.Color(204, 204, 204));
-        largoTxt.setBorder(null);
-        largoTxt.addMouseListener(new java.awt.event.MouseAdapter() {
+        espesorTxt.setBackground(new java.awt.Color(242, 242, 242));
+        espesorTxt.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        espesorTxt.setForeground(new java.awt.Color(0, 0, 0));
+        espesorTxt.setBorder(null);
+        espesorTxt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
-                largoTxtMousePressed(evt);
+                espesorTxtMousePressed(evt);
             }
         });
-        largoTxt.addActionListener(new java.awt.event.ActionListener() {
+        espesorTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                largoTxtActionPerformed(evt);
+                espesorTxtActionPerformed(evt);
             }
         });
-        largoTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+        espesorTxt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                largoTxtKeyPressed(evt);
+                espesorTxtKeyPressed(evt);
             }
         });
-        bg.add(largoTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 220, 80, 30));
-        bg.add(largoSeparator, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 80, 10));
+        bg.add(espesorTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 220, 80, 30));
+        bg.add(espesorSeparator, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 250, 80, 10));
 
         nuevoBtn.setBackground(new java.awt.Color(0, 96, 170));
         nuevoBtn.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -254,7 +299,7 @@ public class frmTpMadera extends javax.swing.JFrame {
         nuevoTxt.setForeground(new java.awt.Color(244, 247, 254));
         nuevoTxt.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         nuevoTxt.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nueva-pagina.png"))); // NOI18N
-        nuevoTxt.setText("ENTRAR");
+        nuevoTxt.setText("NUEVO");
         nuevoTxt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         nuevoTxt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -423,8 +468,8 @@ public class frmTpMadera extends javax.swing.JFrame {
 
         jScrollPane1.setBackground(new java.awt.Color(242, 242, 242));
 
-        jTable1.setBackground(new java.awt.Color(242, 242, 242));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblTipoMadera.setBackground(new java.awt.Color(242, 242, 242));
+        tblTipoMadera.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -459,12 +504,38 @@ public class frmTpMadera extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        tblTipoMadera.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblTipoMaderaMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tblTipoMadera);
 
         bg.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 920, 310));
 
         bg_img.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo bl.jpg"))); // NOI18N
         bg.add(bg_img, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 1020, 660));
+
+        idTxt.setBackground(new java.awt.Color(242, 242, 242));
+        idTxt.setFont(new java.awt.Font("Roboto", 0, 12)); // NOI18N
+        idTxt.setForeground(new java.awt.Color(204, 204, 204));
+        idTxt.setBorder(null);
+        idTxt.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                idTxtMousePressed(evt);
+            }
+        });
+        idTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                idTxtActionPerformed(evt);
+            }
+        });
+        idTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                idTxtKeyPressed(evt);
+            }
+        });
+        bg.add(idTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 80, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -501,20 +572,24 @@ public class frmTpMadera extends javax.swing.JFrame {
 
     private void exitTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitTxtMouseEntered
         exitBtn.setBackground(Color.red);
-        exitTxt.setForeground(new Color(244,247,254));
+        exitTxt.setForeground(new Color(244, 247, 254));
     }//GEN-LAST:event_exitTxtMouseEntered
 
     private void exitTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitTxtMouseExited
-        exitBtn.setBackground(new Color(244,247,254));
+        exitBtn.setBackground(new Color(244, 247, 254));
         exitTxt.setForeground(Color.black);
     }//GEN-LAST:event_exitTxtMouseExited
 
     private void nuevoTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevoTxtMouseEntered
-        nuevoBtn.setBackground(new Color(0, 156, 223));
+        if (nuevoTxt.isEnabled()) {
+            nuevoBtn.setBackground(new Color(0, 156, 223));
+        }
     }//GEN-LAST:event_nuevoTxtMouseEntered
 
     private void nuevoTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevoTxtMouseExited
-        nuevoBtn.setBackground(new Color(0,96,170));
+        if (nuevoTxt.isEnabled()) {
+            nuevoBtn.setBackground(new Color(0, 96, 170));
+        }
     }//GEN-LAST:event_nuevoTxtMouseExited
 
     private void codTxtMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_codTxtMousePressed
@@ -522,7 +597,8 @@ public class frmTpMadera extends javax.swing.JFrame {
     }//GEN-LAST:event_codTxtMousePressed
 
     private void nuevoTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_nuevoTxtMouseClicked
-        
+        limpiar();
+        habilitarBotones(true, true, true, true, false, true, false, false, true);
     }//GEN-LAST:event_nuevoTxtMouseClicked
 
     private void codTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_codTxtKeyPressed
@@ -570,11 +646,15 @@ public class frmTpMadera extends javax.swing.JFrame {
     }//GEN-LAST:event_salirTxtMouseClicked
 
     private void salirTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salirTxtMouseEntered
-        salirBtn.setBackground(new Color(0, 156, 223));
+        if (salirTxt.isEnabled()) {
+            salirBtn.setBackground(new Color(0, 156, 223));
+        }
     }//GEN-LAST:event_salirTxtMouseEntered
 
     private void salirTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salirTxtMouseExited
-        salirBtn.setBackground(new Color(0,96,170));
+        if (salirTxt.isEnabled()) {
+            salirBtn.setBackground(new Color(0, 96, 170));
+        }
     }//GEN-LAST:event_salirTxtMouseExited
 
     private void borrarTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_borrarTxtMouseClicked
@@ -582,36 +662,118 @@ public class frmTpMadera extends javax.swing.JFrame {
     }//GEN-LAST:event_borrarTxtMouseClicked
 
     private void borrarTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_borrarTxtMouseEntered
-        borrarBtn.setBackground(new Color(0, 156, 223));
+        if (borrarTxt.isEnabled()) {
+            borrarBtn.setBackground(new Color(0, 156, 223));
+        }
     }//GEN-LAST:event_borrarTxtMouseEntered
 
     private void borrarTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_borrarTxtMouseExited
-        borrarBtn.setBackground(new Color(0,96,170));
+        if (borrarTxt.isEnabled()) {
+            borrarBtn.setBackground(new Color(0, 96, 170));
+        }
     }//GEN-LAST:event_borrarTxtMouseExited
 
     private void grabarTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grabarTxtMouseClicked
-        // TODO add your handling code here:
+        String nombreMadera;
+        double largo, ancho, espesor;
+
+        nombreMadera = codTxt.getText();
+        largo = Double.parseDouble(largoTxt.getText());
+        ancho = Double.parseDouble(anchoTxt.getText());
+        espesor = Double.parseDouble(espesorTxt.getText());
+
+        DTOTipoMadera oProd = new DTOTipoMadera();
+        oProd.setNombreMadera(nombreMadera);
+        oProd.setLargo(largo);
+        oProd.setAncho(ancho);
+        oProd.setEspesor(espesor);
+
+        DAOTipoMadera oDProd = new DAOTipoMadera();
+        oDProd.agregarMadera(oProd);
+
+        verProducto();
+        limpiar();
+        habilitarBotones(false, false, false, false, true, false, false, false, true);
     }//GEN-LAST:event_grabarTxtMouseClicked
 
     private void grabarTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grabarTxtMouseEntered
-        grabarBtn.setBackground(new Color(0, 156, 223));
+        if (grabarTxt.isEnabled()) {
+            grabarBtn.setBackground(new Color(0, 156, 223));
+        }
     }//GEN-LAST:event_grabarTxtMouseEntered
 
     private void grabarTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grabarTxtMouseExited
-        grabarBtn.setBackground(new Color(0,96,170));
+        if (grabarTxt.isEnabled()) {
+            grabarBtn.setBackground(new Color(0, 96, 170));
+        }
     }//GEN-LAST:event_grabarTxtMouseExited
 
     private void editarTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarTxtMouseClicked
-        // TODO add your handling code here:
+        int idMadera;
+        String nombreMadera;
+        double largo, ancho, espesor;
+
+        idMadera = Integer.parseInt(idTxt.getText());
+        nombreMadera = codTxt.getText();
+        largo = Double.parseDouble(largoTxt.getText());
+        ancho = Double.parseDouble(anchoTxt.getText());
+        espesor = Double.parseDouble(espesorTxt.getText());
+
+        DTOTipoMadera oMad = new DTOTipoMadera();
+        oMad.setIdMadera(idMadera);
+        oMad.setNombreMadera(nombreMadera);
+        oMad.setLargo(largo);
+        oMad.setAncho(ancho);
+        oMad.setEspesor(espesor);
+
+        DAOTipoMadera oDMad = new DAOTipoMadera();
+        oDMad.editarMadera(oMad);
+
+        verProducto();
+        limpiar();
     }//GEN-LAST:event_editarTxtMouseClicked
 
     private void editarTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarTxtMouseEntered
-        editarBtn.setBackground(new Color(0, 156, 223));
+        if (editarTxt.isEnabled()) {
+            editarBtn.setBackground(new Color(0, 156, 223));
+        }
     }//GEN-LAST:event_editarTxtMouseEntered
 
     private void editarTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarTxtMouseExited
-        editarBtn.setBackground(new Color(0,96,170));
+        if (editarTxt.isEnabled()) {
+            editarBtn.setBackground(new Color(0, 96, 170));
+        }
     }//GEN-LAST:event_editarTxtMouseExited
+
+    private void tblTipoMaderaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblTipoMaderaMouseClicked
+        int fila;
+        fila = tblTipoMadera.getSelectedRow();
+        String id, nombre, largo, ancho, espesor;
+        id = (String) tblTipoMadera.getValueAt(fila, 0);
+        nombre = (String) tblTipoMadera.getValueAt(fila, 1);
+        largo = (String) tblTipoMadera.getValueAt(fila, 2);
+        ancho = (String) tblTipoMadera.getValueAt(fila, 3);
+        espesor = (String) tblTipoMadera.getValueAt(fila, 4);
+
+        idTxt.setText(id);
+        codTxt.setText(nombre);
+        largoTxt.setText(largo);
+        anchoTxt.setText(ancho);
+        espesorTxt.setText(espesor);
+        habilitarBotones(true, true, true, true, false, false, true, true, true);
+    }//GEN-LAST:event_tblTipoMaderaMouseClicked
+
+    private void idTxtMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_idTxtMousePressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idTxtMousePressed
+
+    private void idTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_idTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idTxtActionPerformed
+
+    private void idTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_idTxtKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_idTxtKeyPressed
 
     /**
      * @param args the command line arguments
@@ -671,8 +833,8 @@ public class frmTpMadera extends javax.swing.JFrame {
     private javax.swing.JPanel grabarBtn;
     private javax.swing.JLabel grabarTxt;
     private javax.swing.JPanel header;
+    private javax.swing.JTextField idTxt;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel largoLbl;
     private javax.swing.JSeparator largoSeparator;
     private javax.swing.JTextField largoTxt;
@@ -680,6 +842,7 @@ public class frmTpMadera extends javax.swing.JFrame {
     private javax.swing.JLabel nuevoTxt;
     private javax.swing.JPanel salirBtn;
     private javax.swing.JLabel salirTxt;
+    private javax.swing.JTable tblTipoMadera;
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }

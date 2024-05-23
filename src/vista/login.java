@@ -15,10 +15,24 @@ import modelo.DTOUsuario;
  * @author Carlos
  */
 public class login extends javax.swing.JFrame {
-    
+
     int xMouse, yMouse;
+
     public login() {
         initComponents();
+    }
+
+    public class CurrentUser {
+
+        private static String nombreUsuario;
+
+        public static String getNombreUsuario() {
+            return nombreUsuario;
+        }
+
+        public static void setNombreUsuario(String nombreUsuario) {
+            CurrentUser.nombreUsuario = nombreUsuario;
+        }
     }
 
     /**
@@ -58,13 +72,14 @@ public class login extends javax.swing.JFrame {
         bg.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         empresa.setBackground(new java.awt.Color(244, 247, 254));
-        empresa.setFont(new java.awt.Font("Roboto Black", 1, 24)); // NOI18N
+        empresa.setFont(new java.awt.Font("Roboto Black", 1, 22)); // NOI18N
         empresa.setForeground(new java.awt.Color(244, 247, 254));
         empresa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        empresa.setText("MADERERA");
-        bg.add(empresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, 300, -1));
+        empresa.setText("INVERSORES FORESTALES");
+        bg.add(empresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 80, 300, 150));
 
         jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(204, 204, 204));
         jLabel12.setText("No tengo una cuenta");
         jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -272,11 +287,11 @@ public class login extends javax.swing.JFrame {
 
     private void exitTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitTxtMouseEntered
         exitBtn.setBackground(Color.red);
-        exitTxt.setForeground(new Color(244,247,254));
+        exitTxt.setForeground(new Color(244, 247, 254));
     }//GEN-LAST:event_exitTxtMouseEntered
 
     private void exitTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitTxtMouseExited
-        exitBtn.setBackground(new Color(244,247,254));
+        exitBtn.setBackground(new Color(244, 247, 254));
         exitTxt.setForeground(Color.black);
     }//GEN-LAST:event_exitTxtMouseExited
 
@@ -285,7 +300,7 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_loginTxtMouseEntered
 
     private void loginTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginTxtMouseExited
-        loginBtn.setBackground(new Color(0,96,170));
+        loginBtn.setBackground(new Color(0, 96, 170));
     }//GEN-LAST:event_loginTxtMouseExited
 
     private void userTxtMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_userTxtMousePressed
@@ -312,10 +327,8 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_passTxtMousePressed
 
     private void loginTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginTxtMouseClicked
-        String user, password;
-
-        user = userTxt.getText();
-        password = passTxt.getText();
+        String user = userTxt.getText();
+        String password = passTxt.getText();
 
         DTOUsuario objeto = new DTOUsuario();
         objeto.setNombreUsu(user);
@@ -325,9 +338,9 @@ public class login extends javax.swing.JFrame {
 
         if (objetoD.verificarCredenciales(objeto)) {
             // Credenciales válidas
+            CurrentUser.setNombreUsuario(user); // Guardar el nombre del usuario
             frmPrincipal ventanaPrincipal = new frmPrincipal();
             ventanaPrincipal.setVisible(true);
-
             this.dispose();
         } else {
             // Credenciales inválidas
@@ -359,7 +372,7 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_jLabel12MouseEntered
 
     private void jLabel12MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseExited
-        jLabel12.setForeground(Color.BLACK);
+        jLabel12.setForeground(new Color(187, 187, 187));
     }//GEN-LAST:event_jLabel12MouseExited
 
     /**

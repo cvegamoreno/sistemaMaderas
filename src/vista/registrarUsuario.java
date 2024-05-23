@@ -104,7 +104,7 @@ public class registrarUsuario extends javax.swing.JFrame {
         empresa.setForeground(new java.awt.Color(244, 247, 254));
         empresa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         empresa.setText("MADERERA");
-        bg.add(empresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, 300, -1));
+        bg.add(empresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, 400, -1));
 
         tblUsuario.setBackground(new java.awt.Color(255, 204, 102));
         tblUsuario.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -438,7 +438,7 @@ public class registrarUsuario extends javax.swing.JFrame {
     }//GEN-LAST:event_headerMouseDragged
 
     private void exitTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitTxtMouseClicked
-        System.exit(0);
+        this.dispose();
     }//GEN-LAST:event_exitTxtMouseClicked
 
     private void exitTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitTxtMouseEntered

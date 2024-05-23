@@ -6,6 +6,7 @@ package vista;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import vista.login.CurrentUser;
 
 /**
  *
@@ -16,8 +17,15 @@ public class frmPrincipal extends javax.swing.JFrame {
     int xMouse, yMouse;
     public frmPrincipal() {
         initComponents();
+        actualizarMensajeBienvenida();
     }
 
+    private void actualizarMensajeBienvenida() {
+        String nombreUsuario = CurrentUser.getNombreUsuario();
+        if (nombreUsuario != null && !nombreUsuario.isEmpty()) {
+            lblBienvenida.setText("Bienvenido, " + nombreUsuario + "!");
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -32,7 +40,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         header = new javax.swing.JPanel();
         exitBtn = new javax.swing.JPanel();
         exitTxt = new javax.swing.JLabel();
-        titulo = new javax.swing.JLabel();
+        lblBienvenida = new javax.swing.JLabel();
         bg_lateral = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -42,6 +50,7 @@ public class frmPrincipal extends javax.swing.JFrame {
         opDetalleCtrl = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         opRegCtrlMad = new javax.swing.JMenuItem();
+        opMantUsuario = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         cerrarSesion = new javax.swing.JMenuItem();
 
@@ -122,11 +131,11 @@ public class frmPrincipal extends javax.swing.JFrame {
 
         bg.add(header, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 40));
 
-        titulo.setFont(new java.awt.Font("Roboto Black", 0, 48)); // NOI18N
-        titulo.setForeground(new java.awt.Color(0, 0, 0));
-        titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        titulo.setText("BIENVENIDO");
-        bg.add(titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 800, 50));
+        lblBienvenida.setFont(new java.awt.Font("Roboto Black", 0, 48)); // NOI18N
+        lblBienvenida.setForeground(new java.awt.Color(0, 0, 0));
+        lblBienvenida.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblBienvenida.setText("Bienvenido, ");
+        bg.add(lblBienvenida, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, 800, 50));
 
         bg_lateral.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo bl.jpg"))); // NOI18N
         bg.add(bg_lateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 800, 500));
@@ -172,6 +181,14 @@ public class frmPrincipal extends javax.swing.JFrame {
             }
         });
         jMenu3.add(opRegCtrlMad);
+
+        opMantUsuario.setText("Usuarios");
+        opMantUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                opMantUsuarioActionPerformed(evt);
+            }
+        });
+        jMenu3.add(opMantUsuario);
 
         jMenuBar1.add(jMenu3);
 
@@ -257,6 +274,10 @@ public class frmPrincipal extends javax.swing.JFrame {
         new detalleControl().setVisible(true);
     }//GEN-LAST:event_opDetalleCtrlActionPerformed
 
+    private void opMantUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_opMantUsuarioActionPerformed
+        new registrarUsuario().setVisible(true);
+    }//GEN-LAST:event_opMantUsuarioActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -306,10 +327,11 @@ public class frmPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JLabel lblBienvenida;
     private javax.swing.JMenuItem opConsRegCtrlMad;
     private javax.swing.JMenuItem opDetalleCtrl;
+    private javax.swing.JMenuItem opMantUsuario;
     private javax.swing.JMenuItem opRegCtrlMad;
     private javax.swing.JMenuItem opRegTpMadera;
-    private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
 }
