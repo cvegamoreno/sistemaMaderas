@@ -6,6 +6,9 @@ package vista;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import javax.swing.JOptionPane;
+import modelo.DAOUsuario;
+import modelo.DTOUsuario;
 
 /**
  *
@@ -29,6 +32,7 @@ public class login extends javax.swing.JFrame {
 
         bg = new javax.swing.JPanel();
         empresa = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         bg_lateral = new javax.swing.JLabel();
         header = new javax.swing.JPanel();
         exitBtn = new javax.swing.JPanel();
@@ -59,6 +63,22 @@ public class login extends javax.swing.JFrame {
         empresa.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         empresa.setText("MADERERA");
         bg.add(empresa, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 260, 300, -1));
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        jLabel12.setText("No tengo una cuenta");
+        jLabel12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jLabel12.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel12MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel12MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel12MouseExited(evt);
+            }
+        });
+        bg.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 470, -1, -1));
 
         bg_lateral.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondo.jpg"))); // NOI18N
         bg.add(bg_lateral, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 0, 300, 500));
@@ -292,9 +312,27 @@ public class login extends javax.swing.JFrame {
     }//GEN-LAST:event_passTxtMousePressed
 
     private void loginTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loginTxtMouseClicked
-        javax.swing.JOptionPane.showMessageDialog(this, "Intento de login con los datos:\nUsuario: " + userTxt.getText() + "\nContraseña: " + String.valueOf(passTxt.getPassword()), "LOGIN", javax.swing.JOptionPane.INFORMATION_MESSAGE);
-        new login().setVisible(false);
-        new frmPrincipal().setVisible(true);
+        String user, password;
+
+        user = userTxt.getText();
+        password = passTxt.getText();
+
+        DTOUsuario objeto = new DTOUsuario();
+        objeto.setNombreUsu(user);
+        objeto.setContrasenaUsu(password);
+
+        DAOUsuario objetoD = new DAOUsuario();
+
+        if (objetoD.verificarCredenciales(objeto)) {
+            // Credenciales válidas
+            frmPrincipal ventanaPrincipal = new frmPrincipal();
+            ventanaPrincipal.setVisible(true);
+
+            this.dispose();
+        } else {
+            // Credenciales inválidas
+            JOptionPane.showMessageDialog(null, "Credenciales incorrectas. Inicio de sesión fallido.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }//GEN-LAST:event_loginTxtMouseClicked
 
     private void passTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_passTxtKeyPressed
@@ -311,6 +349,18 @@ public class login extends javax.swing.JFrame {
             passTxt.setForeground(Color.black);
         }
     }//GEN-LAST:event_userTxtKeyPressed
+
+    private void jLabel12MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseClicked
+        new registrarUsuario().setVisible(true);
+    }//GEN-LAST:event_jLabel12MouseClicked
+
+    private void jLabel12MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseEntered
+        jLabel12.setForeground(Color.BLUE);
+    }//GEN-LAST:event_jLabel12MouseEntered
+
+    private void jLabel12MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel12MouseExited
+        jLabel12.setForeground(Color.BLACK);
+    }//GEN-LAST:event_jLabel12MouseExited
 
     /**
      * @param args the command line arguments
@@ -355,6 +405,7 @@ public class login extends javax.swing.JFrame {
     private javax.swing.JLabel exitTxt;
     private javax.swing.JLabel favicon;
     private javax.swing.JPanel header;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JPanel loginBtn;
     private javax.swing.JLabel loginTxt;
     private javax.swing.JSeparator passSeparator;
