@@ -731,6 +731,7 @@ public class frmTpMadera extends javax.swing.JFrame {
 
         verProducto();
         limpiar();
+        
     }//GEN-LAST:event_editarTxtMouseClicked
 
     private void editarTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarTxtMouseEntered
