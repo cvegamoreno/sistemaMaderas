@@ -1,0 +1,72 @@
+
+-- Base de datos: `bd_maderas`
+
+
+CREATE TABLE `tipo_madera` (
+  `id_madera` int(11) NOT NULL,
+  `nombre_madera` varchar(255) NOT NULL,
+  `largo` decimal(10,2) NOT NULL,
+  `ancho` decimal(10,2) NOT NULL,
+  `espesor` decimal(10,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `tipo_madera`
+--
+
+INSERT INTO `tipo_madera` (`id_madera`, `nombre_madera`, `largo`, `ancho`, `espesor`) VALUES
+(1, '1X2(10)', 10.00, 1.00, 2.00),
+(2, '1x3(10)', 10.00, 1.00, 3.00);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuario`
+--
+
+CREATE TABLE `usuario` (
+  `usuario_id` int(11) NOT NULL,
+  `nombre_usuario` varchar(50) DEFAULT NULL,
+  `contrasena` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`usuario_id`, `nombre_usuario`, `contrasena`) VALUES
+(1, 'carlos', '1234');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `tipo_madera`
+--
+ALTER TABLE `tipo_madera`
+  ADD PRIMARY KEY (`id_madera`),
+  ADD UNIQUE KEY `nombre_madera` (`nombre_madera`);
+
+--
+-- Indices de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  ADD PRIMARY KEY (`usuario_id`),
+  ADD UNIQUE KEY `nombre_usuario` (`nombre_usuario`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `tipo_madera`
+--
+ALTER TABLE `tipo_madera`
+  MODIFY `id_madera` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT de la tabla `usuario`
+--
+ALTER TABLE `usuario`
+  MODIFY `usuario_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
