@@ -5,17 +5,50 @@
 package vista;
 
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
+import javax.swing.DefaultComboBoxModel;
+import modelo.DAORegCtrlMad;
 
 /**
  *
  * @author Carlos
  */
 public class frmRegCtrlMad extends javax.swing.JFrame {
-    
+
     int xMouse, yMouse;
+
     public frmRegCtrlMad() {
         initComponents();
+        verLargo();
+        addLargoComboBoxListener();
+    }
+
+    void verLargo() {
+        DefaultComboBoxModel modeloLargo;
+        DAORegCtrlMad objeto = new DAORegCtrlMad();
+        modeloLargo = objeto.verLargo();
+        largoCmb.setModel(modeloLargo);
+    }
+
+    void addLargoComboBoxListener() {
+        largoCmb.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (largoCmb.getSelectedItem() != null) {
+                    double selectedLargo = (double) largoCmb.getSelectedItem();
+                    updateNombreCmb(selectedLargo);
+                }
+            }
+        });
+    }
+
+    void updateNombreCmb(double largo) {
+        DefaultComboBoxModel modeloNombre;
+        DAORegCtrlMad objeto = new DAORegCtrlMad();
+        modeloNombre = objeto.getNombresPorLargo(largo);
+        nombreCmb.setModel(modeloNombre);
     }
 
     /**
@@ -36,7 +69,7 @@ public class frmRegCtrlMad extends javax.swing.JFrame {
         largoLbl = new javax.swing.JLabel();
         largoCmb = new javax.swing.JComboBox<>();
         largoLbl1 = new javax.swing.JLabel();
-        largoCmb1 = new javax.swing.JComboBox<>();
+        nombreCmb = new javax.swing.JComboBox<>();
         cantidadLbl = new javax.swing.JLabel();
         cantidadTxt = new javax.swing.JTextField();
         cantidadSeparator = new javax.swing.JSeparator();
@@ -155,14 +188,14 @@ public class frmRegCtrlMad extends javax.swing.JFrame {
         largoLbl1.setText("NUMERO DE MEDIDAS");
         bg.add(largoLbl1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, 130, 30));
 
-        largoCmb1.setBackground(new java.awt.Color(242, 242, 242));
-        largoCmb1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Medidas", "4 x 1", "3 x 2", "2 x 2" }));
-        largoCmb1.addActionListener(new java.awt.event.ActionListener() {
+        nombreCmb.setBackground(new java.awt.Color(242, 242, 242));
+        nombreCmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Medidas", "4 x 1", "3 x 2", "2 x 2" }));
+        nombreCmb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                largoCmb1ActionPerformed(evt);
+                nombreCmbActionPerformed(evt);
             }
         });
-        bg.add(largoCmb1, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 130, 30));
+        bg.add(nombreCmb, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 110, 130, 30));
 
         cantidadLbl.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
         cantidadLbl.setForeground(new java.awt.Color(0, 0, 0));
@@ -437,11 +470,11 @@ public class frmRegCtrlMad extends javax.swing.JFrame {
 
     private void exitTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitTxtMouseEntered
         exitBtn.setBackground(Color.red);
-        exitTxt.setForeground(new Color(244,247,254));
+        exitTxt.setForeground(new Color(244, 247, 254));
     }//GEN-LAST:event_exitTxtMouseEntered
 
     private void exitTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_exitTxtMouseExited
-        exitBtn.setBackground(new Color(244,247,254));
+        exitBtn.setBackground(new Color(244, 247, 254));
         exitTxt.setForeground(Color.black);
     }//GEN-LAST:event_exitTxtMouseExited
 
@@ -466,7 +499,7 @@ public class frmRegCtrlMad extends javax.swing.JFrame {
     }//GEN-LAST:event_salirTxtMouseEntered
 
     private void salirTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_salirTxtMouseExited
-        salirBtn.setBackground(new Color(0,96,170));
+        salirBtn.setBackground(new Color(0, 96, 170));
     }//GEN-LAST:event_salirTxtMouseExited
 
     private void borrarTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_borrarTxtMouseClicked
@@ -478,7 +511,7 @@ public class frmRegCtrlMad extends javax.swing.JFrame {
     }//GEN-LAST:event_borrarTxtMouseEntered
 
     private void borrarTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_borrarTxtMouseExited
-        borrarBtn.setBackground(new Color(0,96,170));
+        borrarBtn.setBackground(new Color(0, 96, 170));
     }//GEN-LAST:event_borrarTxtMouseExited
 
     private void grabarTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grabarTxtMouseClicked
@@ -490,7 +523,7 @@ public class frmRegCtrlMad extends javax.swing.JFrame {
     }//GEN-LAST:event_grabarTxtMouseEntered
 
     private void grabarTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_grabarTxtMouseExited
-        grabarBtn.setBackground(new Color(0,96,170));
+        grabarBtn.setBackground(new Color(0, 96, 170));
     }//GEN-LAST:event_grabarTxtMouseExited
 
     private void editarTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarTxtMouseClicked
@@ -502,16 +535,16 @@ public class frmRegCtrlMad extends javax.swing.JFrame {
     }//GEN-LAST:event_editarTxtMouseEntered
 
     private void editarTxtMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarTxtMouseExited
-        editarBtn.setBackground(new Color(0,96,170));
+        editarBtn.setBackground(new Color(0, 96, 170));
     }//GEN-LAST:event_editarTxtMouseExited
 
     private void largoCmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_largoCmbActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_largoCmbActionPerformed
 
-    private void largoCmb1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_largoCmb1ActionPerformed
+    private void nombreCmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreCmbActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_largoCmb1ActionPerformed
+    }//GEN-LAST:event_nombreCmbActionPerformed
 
     private void piesTxtMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_piesTxtMousePressed
         // TODO add your handling code here:
@@ -582,9 +615,9 @@ public class frmRegCtrlMad extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JComboBox<String> largoCmb;
-    private javax.swing.JComboBox<String> largoCmb1;
     private javax.swing.JLabel largoLbl;
     private javax.swing.JLabel largoLbl1;
+    private javax.swing.JComboBox<String> nombreCmb;
     private javax.swing.JLabel piesLbl;
     private javax.swing.JSeparator piesSeparator;
     private javax.swing.JTextField piesTxt;

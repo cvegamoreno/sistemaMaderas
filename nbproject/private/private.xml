@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Documentos/NetBeansProjects/sistemaMaderas/src/vista/detalleControl.java</file>
+            <file>file:/D:/Documentos/NetBeansProjects/sistemaMaderas/src/modelo/DTOTipoMadera.java</file>
             <file>file:/D:/Documentos/NetBeansProjects/sistemaMaderas/src/vista/frmRegCtrlMad.java</file>
-            <file>file:/D:/Documentos/NetBeansProjects/sistemaMaderas/src/vista/frmPrincipal.java</file>
-            <file>file:/D:/Documentos/NetBeansProjects/sistemaMaderas/src/sistemamaderas/SistemaMaderas.java</file>
+            <file>file:/D:/Documentos/NetBeansProjects/sistemaMaderas/src/modelo/DAOTipoMadera.java</file>
             <file>file:/D:/Documentos/NetBeansProjects/sistemaMaderas/src/vista/frmTpMadera.java</file>
-            <file>file:/D:/Documentos/NetBeansProjects/sistemaMaderas/src/vista/login.java</file>
+            <file>file:/D:/Documentos/NetBeansProjects/sistemaMaderas/src/modelo/DTORegCtrlMad.java</file>
         </group>
     </open-files>
 </project-private>

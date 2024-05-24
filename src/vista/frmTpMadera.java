@@ -21,6 +21,7 @@ public class frmTpMadera extends javax.swing.JFrame {
     public frmTpMadera() {
         initComponents();
         verProducto();
+        limpiar();
         habilitarBotones(false, false, false, false, true, false, false, false, true);
     }
 
@@ -35,7 +36,7 @@ public class frmTpMadera extends javax.swing.JFrame {
     void verProducto() {
         DefaultTableModel modeloproducto;
         DAOTipoMadera oDProd = new DAOTipoMadera();
-        modeloproducto = oDProd.verProducto();
+        modeloproducto = oDProd.verMadera();
         tblTipoMadera.setModel(modeloproducto);
 
     }
@@ -535,7 +536,7 @@ public class frmTpMadera extends javax.swing.JFrame {
                 idTxtKeyPressed(evt);
             }
         });
-        bg.add(idTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 160, 80, 30));
+        bg.add(idTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 220, 110, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

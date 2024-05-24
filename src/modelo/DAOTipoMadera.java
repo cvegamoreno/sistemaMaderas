@@ -76,7 +76,7 @@ public class DAOTipoMadera {
         }
     }
 
-    public void eliminarProducto(DTOTipoMadera objeto) {
+    public void eliminarMadera(DTOTipoMadera objeto) {
 
         try {
             pst = con.prepareStatement(SQLELIMINAR);
@@ -110,8 +110,8 @@ public class DAOTipoMadera {
         }
     }
 
-    public DefaultTableModel verProducto() {
-        DefaultTableModel modeloProducto = new DefaultTableModel();
+    public DefaultTableModel verMadera() {
+        DefaultTableModel modeloMadera = new DefaultTableModel();
 
         try {
 
@@ -120,14 +120,14 @@ public class DAOTipoMadera {
             rs = pst.executeQuery();
             String[] datos = new String[5];
             String[] titulo = {"ID", "NOMBRE (LARGO)", "LARGO (Pulgadas)", "ANCHO (Pulgadas)", "ESPESOR (Pulgadas)"};
-            modeloProducto.setColumnIdentifiers(titulo);
+            modeloMadera.setColumnIdentifiers(titulo);
             while (rs.next()) {
                 datos[0] = String.valueOf(rs.getInt(1));
                 datos[1] = rs.getString(2);
                 datos[2] = String.valueOf(rs.getDouble(3));
                 datos[3] = String.valueOf(rs.getDouble(4));
                 datos[4] = String.valueOf(rs.getDouble(5));
-                modeloProducto.addRow(datos);
+                modeloMadera.addRow(datos);
             }
 
         } catch (SQLException ex) {
@@ -136,6 +136,6 @@ public class DAOTipoMadera {
             oCon.cerrarConexion();
         }
 
-        return modeloProducto;
+        return modeloMadera;
     }
 }
