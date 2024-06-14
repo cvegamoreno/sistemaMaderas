@@ -20,7 +20,7 @@ public class frmTpMadera extends javax.swing.JFrame {
 
     public frmTpMadera() {
         initComponents();
-        verProducto();
+        verMadera();
         limpiar();
         habilitarBotones(false, false, false, false, true, false, false, false, true);
     }
@@ -33,7 +33,7 @@ public class frmTpMadera extends javax.swing.JFrame {
         codTxt.requestFocus();
     }
 
-    void verProducto() {
+    void verMadera() {
         DefaultTableModel modeloproducto;
         DAOTipoMadera oDProd = new DAOTipoMadera();
         modeloproducto = oDProd.verMadera();
@@ -659,7 +659,18 @@ public class frmTpMadera extends javax.swing.JFrame {
     }//GEN-LAST:event_salirTxtMouseExited
 
     private void borrarTxtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_borrarTxtMouseClicked
-        // TODO add your handling code here:
+        int idMadera;
+        
+        idMadera = Integer.parseInt(idTxt.getText());
+
+        DTOTipoMadera objeto = new DTOTipoMadera(idMadera);
+
+        DAOTipoMadera objetoD = new DAOTipoMadera();
+        objetoD.eliminarMadera(objeto);
+
+        verMadera();
+        limpiar();
+        habilitarBotones(false, false, false, false, true, false, false, false, true);
     }//GEN-LAST:event_borrarTxtMouseClicked
 
     private void borrarTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_borrarTxtMouseEntered
@@ -692,7 +703,7 @@ public class frmTpMadera extends javax.swing.JFrame {
         DAOTipoMadera oDProd = new DAOTipoMadera();
         oDProd.agregarMadera(oProd);
 
-        verProducto();
+        verMadera();
         limpiar();
         habilitarBotones(false, false, false, false, true, false, false, false, true);
     }//GEN-LAST:event_grabarTxtMouseClicked
@@ -730,9 +741,9 @@ public class frmTpMadera extends javax.swing.JFrame {
         DAOTipoMadera oDMad = new DAOTipoMadera();
         oDMad.editarMadera(oMad);
 
-        verProducto();
+        verMadera();
         limpiar();
-        
+        habilitarBotones(false, false, false, false, true, false, false, false, true);
     }//GEN-LAST:event_editarTxtMouseClicked
 
     private void editarTxtMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_editarTxtMouseEntered
